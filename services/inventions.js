@@ -39,19 +39,23 @@ function displayInventionDetailsCard(htmlTarget, invention) {
         }</p>
         <a href="/pages/show_invention.html?id=${invention.id}">En voir plus</a>
     </div>
-  `;
+`;
     htmlTarget.innerHTML += card;
 }
 
 /*
     This function is responsible for displaying the inventions on the inventions page.
     TODO: Implement this function.
-*/
+*/  
 function displayAllInventions() {
     // Get target element from the DOM to display the inventions
+    const inventionsList = document.getElementById("inventions_list");
     // Clear the list
+    inventionsList.innerHTML = "";
     // Create and Display Card for 3 inventions
-}
+    for (let i = 0; i < inventions.length; i++) {
+        displayInventionDetailsCard(inventionsList, inventions[i]);
+    }}
 
 /*
     This function is responsible for displaying the details of an invention on the invention page.
@@ -64,6 +68,16 @@ function displayInvention() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     // Get the target element from the DOM
+    const inventionTitle = document.getElementById("invention_title");
+    const inventionDetail = document.getElementById("invention_details");
     // Get the invention object from the array "inventions" using the id
+    const object = inventions.find(object => object.id == id);
     // Display the details of the invention in the target element
+    inventionTitle.innerHTML += `${object.name}`;
+    inventionDetail.innerHTML += `
+        <img src="../assets/images/inventions/${object.image}" alt="${object.name}">
+        <p>${object.description}</p>
+        <span>Année de création: ${object.year}</span>
+        <span>Inventeur: ${object.inventor}</span>
+    `;
 }
