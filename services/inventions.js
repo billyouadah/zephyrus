@@ -49,9 +49,15 @@ function displayInventionDetailsCard(htmlTarget, invention) {
 */
 function displayAllInventions() {
     // Get target element from the DOM to display the inventions
+    const inventionsList = document.getElementById('inventions_list');
     // Clear the list
-    // Create and Display Card for 3 inventions
+    inventionsList .innerHTML = '';
+    // Create and Display Card for the inventions
+    for (let i = 0; i < inventions.length; i++) {
+      displayInventionDetailsCard(inventionsList , inventions[i]);
+    }
 }
+
 
 /*
     This function is responsible for displaying the details of an invention on the invention page.
@@ -64,6 +70,8 @@ function displayInvention() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     // Get the target element from the DOM
+    const inventionDetail= document.getElementById("invention_details")
+    console.log(inventionDetail)
     // Get the invention object from the array "inventions" using the id
     // Display the details of the invention in the target element
 }
