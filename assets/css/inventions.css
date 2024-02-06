@@ -11,7 +11,7 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	align-items: center;
+	gap : 1em;
 	align-content: space-evenly;
 }
 
@@ -35,6 +35,8 @@
     text-align: center;
     display: block;
     margin-top: 20px;
+    
+    
 }
 
 .invention {
@@ -44,6 +46,7 @@
     background-color: #fde9c9;
     box-shadow: 0 0 10px 0 var(--chocolate-color);
     padding-bottom: 20px;
+    
 }
 
 #invention_details img {
