@@ -39,26 +39,25 @@ function displayInventionDetailsCard(htmlTarget, invention) {
         }</p>
         <a href="/pages/show_invention.html?id=${invention.id}">En voir plus</a>
     </div>
-  `;
+`;
     htmlTarget.innerHTML += card;
 }
 
 /*
     This function is responsible for displaying the inventions on the inventions page.
     TODO: Implement this function.
-*/
+*/  
 function displayAllInventions() {
     // Get target element from the DOM to display the inventions
-    // Create and Display Card for 3 inventions
-    // Get target element from the DOM to display the inventions
-  const htmlTarget = document.getElementById('inventions_list');
+    const inventionsList = document.getElementById("inventions_list");
     // Clear the list
-  htmlTarget.innerHTML = '';
+    inventionsList.innerHTML = "";
     // Create and Display Card for 3 inventions
-  for (let i = 0; i < inventions.length; i++) {
-    displayInventionDetailsCard(htmlTarget, inventions[i]);
-  }
-}
+    for (let i = 0; i < inventions.length; i++) {
+        displayInventionDetailsCard(inventionsList, inventions[i]);
+    }}
+
+
 /*
     This function is responsible for displaying the details of an invention on the invention page.
     It gets the id of the invention from the URL and uses it to get the invention object from the array.
@@ -70,15 +69,16 @@ function displayInvention() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     // Get the target element from the DOM
-   // const htmlTarget = document.getElementById('inventions_list');
-
+    const inventionTitle = document.getElementById("invention_title");
+    const inventionDetail = document.getElementById("invention_details");
     // Get the invention object from the array "inventions" using the id
-
-    const inventionTitle = document.getElementById("invention_title")
-    const inventionDetails = document.getElementById("invention_details")
-    const item = inventions.find(item => item.id == id)
-    console.log(item)
-    inventionTitle.innerHTML = item.name
-    inventionDetails.innerHTML += `
-    <img src="/assets/images/inventions/${item.image}" alt="${item.name}"> `;
+    const invention = inventions.find(invention => invention.id == id);
+    // Display the details of the invention in the target element
+    inventionTitle.innerHTML += `${invention.name}`;
+    inventionDetail.innerHTML += `
+        <img src="../assets/images/inventions/${invention.image}" alt="${invention.name}">
+        <p>${invention.description}</p>
+        <span>Année de création: ${invention.year}</span>
+        <span>Inventeur: ${invention.inventor}</span>
+    `;
 }
