@@ -15,7 +15,7 @@ function displayInventionsHome() {
     // Clear the list
     htmlTarget.innerHTML = '';
     // Create and Display Card for 3 inventions
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3 ; i++) {
         displayInventionDetailsCard(htmlTarget, inventions[i]);
     }
 }
@@ -49,10 +49,16 @@ function displayInventionDetailsCard(htmlTarget, invention) {
 */
 function displayAllInventions() {
     // Get target element from the DOM to display the inventions
-    // Clear the list
     // Create and Display Card for 3 inventions
+    // Get target element from the DOM to display the inventions
+  const htmlTarget = document.getElementById('inventions_list');
+    // Clear the list
+  htmlTarget.innerHTML = '';
+    // Create and Display Card for 3 inventions
+  for (let i = 0; i < inventions.length; i++) {
+    displayInventionDetailsCard(htmlTarget, inventions[i]);
+  }
 }
-
 /*
     This function is responsible for displaying the details of an invention on the invention page.
     It gets the id of the invention from the URL and uses it to get the invention object from the array.
@@ -64,6 +70,15 @@ function displayInvention() {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     // Get the target element from the DOM
+   // const htmlTarget = document.getElementById('inventions_list');
+
     // Get the invention object from the array "inventions" using the id
-    // Display the details of the invention in the target element
+
+    const inventionTitle = document.getElementById("invention_title")
+    const inventionDetails = document.getElementById("invention_details")
+    const item = inventions.find(item => item.id == id)
+    console.log(item)
+    inventionTitle.innerHTML = item.name
+    inventionDetails.innerHTML += `
+    <img src="/assets/images/inventions/${item.image}" alt="${item.name}"> `;
 }
